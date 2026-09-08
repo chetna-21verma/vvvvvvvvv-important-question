@@ -1,120 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Important Question 👀</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>For Chikni BB 🌙</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
-      min-height: 100vh;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: "Trebuchet MS", Arial, sans-serif;
+
+      /* YOUR MOON + STARS IMAGE */
+      background-image:
+        linear-gradient(
+          rgba(8, 5, 25, 0.25),
+          rgba(8, 5, 25, 0.25)
+        ),
+        url("moon-background.png");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      transition: background 0.5s;
+
+      color: white;
+    }
+
+    /* Dark dreamy overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(
+        circle at center,
+        transparent 20%,
+        rgba(0,0,20,0.35) 100%
+      );
+
+      pointer-events: none;
     }
 
     .card {
       width: min(90%, 600px);
-      padding: 45px 25px;
+      padding: 35px 25px;
       text-align: center;
-      background: rgba(255,255,255,0.92);
+
+      background: rgba(20, 12, 45, 0.55);
+      backdrop-filter: blur(8px);
+
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 30px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.45),
+        0 0 40px rgba(255,180,220,0.15);
+
       position: relative;
       z-index: 5;
     }
 
     h1 {
-      font-size: clamp(2rem, 7vw, 4rem);
+      font-size: clamp(2rem, 8vw, 4rem);
       margin: 0 0 15px;
+
+      text-shadow:
+        0 0 10px rgba(255,190,220,0.9),
+        0 0 30px rgba(255,150,210,0.5);
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+    .question {
+      font-size: clamp(1.1rem, 4vw, 1.4rem);
+      line-height: 1.6;
+    }
+
+    .question strong {
+      font-size: 1.35em;
     }
 
     .buttons {
+      margin-top: 30px;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      min-height: 70px;
+      align-items: center;
+      gap: 25px;
+      min-height: 80px;
     }
 
     button {
       border: none;
-      padding: 15px 28px;
       border-radius: 999px;
+
+      padding: 16px 30px;
+
       font-size: 1.1rem;
       font-weight: bold;
+
       cursor: pointer;
-      transition: transform 0.15s;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     #yes {
-      background: #ff4d88;
+      background: linear-gradient(135deg, #ff6fa8, #ff9bc5);
       color: white;
+
+      box-shadow:
+        0 0 20px rgba(255,100,170,0.6);
+
+      position: relative;
+      z-index: 20;
     }
 
     #yes:hover {
       transform: scale(1.12);
+      box-shadow:
+        0 0 35px rgba(255,100,170,0.9);
     }
 
+    /*
+      IMPORTANT:
+      NO starts normally positioned.
+      Once they try to click it, JS turns it into
+      a fixed-position runaway button.
+    */
+
     #no {
-      background: #ddd;
-      color: #333;
-      position: fixed;
-      z-index: 10;
+      background: rgba(255,255,255,0.85);
+      color: #292038;
+
+      position: relative;
+
+      transition:
+        left 0.15s ease,
+        top 0.15s ease,
+        transform 0.15s ease;
     }
 
     #message {
-      margin-top: 25px;
+      margin-top: 20px;
+
       min-height: 30px;
+
+      font-size: 1rem;
       font-weight: bold;
-      color: #ff3f7f;
+
+      color: #ffd4e8;
+
+      text-shadow: 0 0 10px rgba(255,150,210,0.8);
     }
 
-    .confetti {
+    .tiny {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* YES screen */
+
+    #success {
+      display: none;
+
+      animation: appear 1s ease;
+
+      font-size: 1.5rem;
+      line-height: 1.6;
+    }
+
+    #success h2 {
+      font-size: clamp(2rem, 8vw, 4rem);
+
+      margin-top: 0;
+
+      text-shadow:
+        0 0 15px #ff9bc5,
+        0 0 35px #ff6fa8;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Falling hearts/stars */
+
+    .floating {
       position: fixed;
-      top: -20px;
+
+      top: -30px;
+
       font-size: 25px;
-      animation: fall linear forwards;
-      z-index: 20;
+
       pointer-events: none;
+
+      z-index: 100;
+
+      animation: fall linear forwards;
     }
 
     @keyframes fall {
+      from {
+        transform:
+          translateY(0)
+          rotate(0deg);
+        opacity: 1;
+      }
+
       to {
-        transform: translateY(110vh) rotate(720deg);
+        transform:
+          translateY(110vh)
+          rotate(720deg);
         opacity: 0;
       }
     }
 
+    /* Screen shake */
+
     .shake {
-      animation: shake 0.35s;
+      animation: shake 0.4s;
     }
 
     @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20% { transform: translateX(-12px); }
-      40% { transform: translateX(12px); }
-      60% { transform: translateX(-8px); }
-      80% { transform: translateX(8px); }
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-12px);
+      }
+
+      40% {
+        transform: translateX(12px);
+      }
+
+      60% {
+        transform: translateX(-8px);
+      }
+
+      80% {
+        transform: translateX(8px);
+      }
     }
 
-    #success {
-      display: none;
-      font-size: 1.5rem;
-      line-height: 1.5;
+    /* Mobile adjustments */
+
+    @media (max-width: 600px) {
+
+      .card {
+        padding: 30px 18px;
+      }
+
+      .buttons {
+        gap: 12px;
+      }
+
+      button {
+        padding: 14px 22px;
+        font-size: 1rem;
+      }
+
+      .question {
+        font-size: 1.05rem;
+      }
     }
   </style>
 </head>
@@ -122,37 +291,84 @@
 <body>
 
   <div class="card" id="card">
-    <div id="question">
-      <h1>🚨 IMPORTANT QUESTION 🚨</h1>
 
-      <p>
-        I have conducted extensive research,<br>
-        consulted the stars,<br>
-        and asked absolutely nobody else...
-        <br><br>
-        <strong>Will you go out with me? 👀👉👈</strong>
-      </p>
+    <!-- QUESTION -->
+
+    <div id="question">
+
+      <h1>🌙 Hey...</h1>
+
+      <div class="question">
+
+        <p>
+          Under the same moon,<br>
+          beneath all these stars...
+        </p>
+
+        <p>
+          I have one <em>very</em> important question.
+        </p>
+
+        <p>
+          <strong>
+            Will you go out with me? 💗
+          </strong>
+        </p>
+
+      </div>
 
       <div class="buttons">
-        <button id="yes">YES 😌💖</button>
-        <button id="no">NO 🙅</button>
+
+        <button id="yes">
+          YES 💖
+        </button>
+
+        <button id="no">
+          NO 🏃
+        </button>
+
       </div>
 
       <div id="message"></div>
+
+      <div class="tiny">
+        ✨ Same moon. Same stars. Maybe us? ✨
+      </div>
+
     </div>
+
+
+    <!-- SUCCESS SCREEN -->
 
     <div id="success">
-      🎉🎉🎉 YOU SAID YES 🎉🎉🎉
-      <br><br>
-      Excellent decision.
-      <br>
-      Your reward: <strong>me 😌</strong>
-      <br><br>
-      💖💐🍕✨
+
+      <h2>
+        YOU SAID YES?! 😭💖
+      </h2>
+
+      <p>
+        Excellent decision.
+      </p>
+
+      <p>
+        I knew you were smart. 😌
+      </p>
+
+      <p>
+        🌙 ✨ 💗 ✨ 🌙
+      </p>
+
+      <p>
+        So... when are we going out? 👀
+      </p>
+
     </div>
+
   </div>
 
+
   <script>
+
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
     const message = document.getElementById("message");
@@ -161,125 +377,303 @@
     let attempts = 0;
 
     const messages = [
-      "Nice try.",
-      "HAHAHAHA no.",
-      "You really thought that would work? 😭",
-      "The button has chosen violence.",
-      "STOP TRYING TO REJECT ME 😭",
-      "That button is scared of you.",
-      "NOPE. 🚫",
-      "THE UNIVERSE SAID YES.",
-      "Please reconsider your life choices.",
-      "Why are you like this 💀",
-      "I can do this all day.",
-      "The 'No' button has resigned.",
-      "At this point you're just bullying the button.",
-      "Fine. I'll make it harder."
+
+      "Nice try 😭",
+
+      "HAHAHAHA absolutely not.",
+
+      "The button said NO to your NO.",
+
+      "You really thought you could click it? 💀",
+
+      "The stars have rejected your rejection.",
+
+      "STOP CHASING THE BUTTON 😭",
+
+      "The button is getting nervous.",
+
+      "NOPE. 🌙",
+
+      "The universe says YES.",
+
+      "Why are you bullying my button? 😭",
+
+      "I can do this all night.",
+
+      "The moon itself is disappointed in you.",
+
+      "PLEASE JUST PRESS YES 😭💗",
+
+      "The NO button has filed for resignation.",
+
+      "Okay this is getting embarrassing.",
+
+      "YOU CANNOT ESCAPE DESTINY.",
+
+      "Fine. The button has gone feral. 💀"
+
     ];
 
-    function moveNoButton() {
+
+    function runAway() {
+
       attempts++;
 
+      /*
+        Turn NO into a fixed-position button
+        so it can escape anywhere on the screen.
+      */
+
+      noButton.style.position = "fixed";
+
       const padding = 20;
-      const maxX = window.innerWidth - noButton.offsetWidth - padding;
-      const maxY = window.innerHeight - noButton.offsetHeight - padding;
 
-      const x = Math.max(
-        padding,
-        Math.random() * maxX
-      );
+      const maxX =
+        window.innerWidth -
+        noButton.offsetWidth -
+        padding;
 
-      const y = Math.max(
-        padding,
-        Math.random() * maxY
-      );
+      const maxY =
+        window.innerHeight -
+        noButton.offsetHeight -
+        padding;
 
-      noButton.style.left = `${x}px`;
-      noButton.style.top = `${y}px`;
+      const randomX =
+        padding +
+        Math.random() * Math.max(0, maxX - padding);
+
+      const randomY =
+        padding +
+        Math.random() * Math.max(0, maxY - padding);
+
+
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
+
+
+      /*
+        Rotate it randomly for extra chaos.
+      */
+
+      const rotation =
+        Math.random() * 40 - 20;
+
+      noButton.style.transform =
+        `rotate(${rotation}deg) scale(${0.9 + Math.random() * 0.25})`;
+
+
+      /*
+        Change the message.
+      */
 
       message.textContent =
-        messages[Math.min(attempts - 1, messages.length - 1)];
+        messages[
+          Math.min(
+            attempts - 1,
+            messages.length - 1
+          )
+        ];
 
-      // Make YES increasingly irresistible.
-      yesButton.style.transform = `scale(${1 + attempts * 0.025})`;
 
-      // Occasionally make the page dramatically shake.
+      /*
+        Make YES progressively bigger.
+      */
+
+      const yesScale =
+        Math.min(
+          1.45,
+          1 + attempts * 0.025
+        );
+
+      yesButton.style.transform =
+        `scale(${yesScale})`;
+
+
+      /*
+        Every few attempts, shake the screen.
+      */
+
       if (attempts % 3 === 0) {
+
         card.classList.remove("shake");
+
         void card.offsetWidth;
+
         card.classList.add("shake");
       }
 
-      // After enough attempts, the NO button starts lying.
-      if (attempts >= 5) {
-        noButton.textContent = "NO (maybe)";
+
+      /*
+        Change the NO text as things get increasingly ridiculous.
+      */
+
+      if (attempts >= 4) {
+        noButton.textContent = "NO...?";
       }
 
-      if (attempts >= 9) {
-        noButton.textContent = "PLEASE NO 😭";
+      if (attempts >= 7) {
+        noButton.textContent = "WAIT 😭";
+      }
+
+      if (attempts >= 10) {
+        noButton.textContent = "PLEASE NO";
       }
 
       if (attempts >= 13) {
-        noButton.textContent = "I GIVE UP";
+        noButton.textContent = "I'M SCARED";
       }
 
-      if (attempts >= 17) {
-        noButton.textContent = "OK FINE 😭";
+      if (attempts >= 16) {
+        noButton.textContent = "OKAY FINE 😭";
       }
+
     }
 
-    // Runs away when the mouse gets close.
-    noButton.addEventListener("mouseenter", moveNoButton);
 
-    // Also runs away on touch.
-    noButton.addEventListener("touchstart", function(e) {
-      e.preventDefault();
-      moveNoButton();
-    });
+    /*
+      Desktop:
+      The button escapes when the mouse gets close.
+    */
 
-    // Just in case they somehow manage to click it.
-    noButton.addEventListener("click", function(e) {
-      e.preventDefault();
-      moveNoButton();
-    });
+    noButton.addEventListener(
+      "mouseenter",
+      runAway
+    );
 
-    yesButton.addEventListener("click", () => {
-      document.getElementById("question").style.display = "none";
-      document.getElementById("success").style.display = "block";
 
-      document.body.style.background =
-        "linear-gradient(135deg, #a18cd1, #fbc2eb)";
+    /*
+      Mobile:
+      Touching the button makes it run away.
+    */
 
-      launchConfetti();
-    });
+    noButton.addEventListener(
+      "touchstart",
+      function(event) {
 
-    function launchConfetti() {
-      const emojis = ["🎉", "💖", "💐", "✨", "🥳", "💕", "🍕", "🫶"];
+        event.preventDefault();
 
-      for (let i = 0; i < 120; i++) {
-        const confetti = document.createElement("div");
+        runAway();
 
-        confetti.className = "confetti";
-        confetti.textContent =
-          emojis[Math.floor(Math.random() * emojis.length)];
+      },
+      { passive: false }
+    );
 
-        confetti.style.left =
+
+    /*
+      If they somehow manage to click it...
+      RUN.
+    */
+
+    noButton.addEventListener(
+      "click",
+      function(event) {
+
+        event.preventDefault();
+
+        runAway();
+
+      }
+    );
+
+
+    /*
+      YES BUTTON
+    */
+
+    yesButton.addEventListener(
+      "click",
+      function() {
+
+        document.getElementById(
+          "question"
+        ).style.display = "none";
+
+
+        document.getElementById(
+          "success"
+        ).style.display = "block";
+
+
+        launchCelebration();
+
+      }
+    );
+
+
+    /*
+      CHAOS / CONFETTI
+    */
+
+    function launchCelebration() {
+
+      const things = [
+
+        "💖",
+        "💕",
+        "💗",
+        "💘",
+        "💐",
+        "✨",
+        "🌙",
+        "⭐",
+        "🥳",
+        "😭",
+        "🫶"
+
+      ];
+
+
+      for (
+        let i = 0;
+        i < 150;
+        i++
+      ) {
+
+        const thing =
+          document.createElement("div");
+
+
+        thing.className =
+          "floating";
+
+
+        thing.textContent =
+          things[
+            Math.floor(
+              Math.random() *
+              things.length
+            )
+          ];
+
+
+        thing.style.left =
           Math.random() * 100 + "vw";
 
-        confetti.style.animationDuration =
-          (2 + Math.random() * 4) + "s";
 
-        confetti.style.animationDelay =
+        thing.style.animationDuration =
+          2 + Math.random() * 4 + "s";
+
+
+        thing.style.animationDelay =
           Math.random() * 1.5 + "s";
 
-        document.body.appendChild(confetti);
 
-        setTimeout(() => confetti.remove(), 7000);
+        thing.style.fontSize =
+          15 + Math.random() * 25 + "px";
+
+
+        document.body.appendChild(thing);
+
+
+        setTimeout(
+          () => thing.remove(),
+          7000
+        );
+
       }
+
     }
 
-    // Start the NO button somewhere normal.
-    noButton.style.position = "relative";
   </script>
 
 </body>
