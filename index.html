@@ -7,6 +7,7 @@
   <title>For Chikni BB 🌙</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -18,63 +19,123 @@
       overflow: hidden;
     }
 
+
+    /* =========================
+       MAIN BACKGROUND
+       ========================= */
+
     body {
       font-family: "Trebuchet MS", Arial, sans-serif;
 
-      /* YOUR MOON + STARS IMAGE */
+      background-color: #080518;
+
+      /*
+        Moon + stars image.
+
+        The image stays proportional.
+        It is moved LOWER so the text
+        inside the image appears below
+        the question box.
+      */
+
       background-image:
         linear-gradient(
-          rgba(8, 5, 25, 0.25),
-          rgba(8, 5, 25, 0.25)
+          rgba(8, 5, 25, 0.15),
+          rgba(8, 5, 25, 0.15)
         ),
         url("moon-background.png");
 
-      background-size: 70% 55%;
-      background-position: center;
+      background-size: 70% auto;
+
+      background-position: center 75%;
+
       background-repeat: no-repeat;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       color: white;
+
+      position: relative;
     }
 
-    /* Dark dreamy overlay */
+
+    /* =========================
+       DREAMY DARK OVERLAY
+       ========================= */
+
     body::before {
       content: "";
+
       position: fixed;
+
       inset: 0;
-      background: radial-gradient(
-        circle at center,
-        transparent 20%,
-        rgba(0,0,20,0.35) 100%
-      );
+
+      background:
+        radial-gradient(
+          circle at center,
+          transparent 15%,
+          rgba(0, 0, 20, 0.35) 100%
+        );
 
       pointer-events: none;
+
+      z-index: 1;
     }
 
+
+    /* =========================
+       QUESTION BOX
+       ========================= */
+
     .card {
+
       width: min(90%, 600px);
+
       padding: 35px 25px;
+
       text-align: center;
 
-      background: rgba(20, 12, 45, 0.55);
+      background:
+        rgba(20, 12, 45, 0.72);
+
       backdrop-filter: blur(8px);
 
-      border: 1px solid rgba(255,255,255,0.2);
+      -webkit-backdrop-filter: blur(8px);
+
+      border:
+        1px solid rgba(255,255,255,0.2);
+
       border-radius: 30px;
 
       box-shadow:
-        0 20px 60px rgba(0,0,0,0.45),
+        0 20px 60px rgba(0,0,0,0.5),
         0 0 40px rgba(255,180,220,0.15);
 
       position: relative;
+
       z-index: 5;
+
+      /*
+        MOVE QUESTION BOX UP
+      */
+
+      transform: translateY(-15vh);
     }
 
+
+    /* =========================
+       TITLE
+       ========================= */
+
     h1 {
-      font-size: clamp(2rem, 8vw, 4rem);
+
+      font-size:
+        clamp(2rem, 8vw, 4rem);
+
       margin: 0 0 15px;
 
       text-shadow:
@@ -82,31 +143,61 @@
         0 0 30px rgba(255,150,210,0.5);
     }
 
+
+    /* =========================
+       QUESTION TEXT
+       ========================= */
+
     .question {
-      font-size: clamp(1.1rem, 4vw, 1.4rem);
+
+      font-size:
+        clamp(1.1rem, 4vw, 1.4rem);
+
       line-height: 1.6;
     }
 
+
     .question strong {
+
       font-size: 1.35em;
+
     }
 
+
+    /* =========================
+       BUTTON AREA
+       ========================= */
+
     .buttons {
+
       margin-top: 30px;
+
       display: flex;
+
       justify-content: center;
+
       align-items: center;
+
       gap: 25px;
+
       min-height: 80px;
     }
 
+
+    /* =========================
+       ALL BUTTONS
+       ========================= */
+
     button {
+
       border: none;
+
       border-radius: 999px;
 
       padding: 16px 30px;
 
       font-size: 1.1rem;
+
       font-weight: bold;
 
       cursor: pointer;
@@ -116,32 +207,51 @@
         box-shadow 0.2s ease;
     }
 
+
+    /* =========================
+       YES BUTTON
+       ========================= */
+
     #yes {
-      background: linear-gradient(135deg, #ff6fa8, #ff9bc5);
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff6fa8,
+          #ff9bc5
+        );
+
       color: white;
 
       box-shadow:
-        0 0 20px rgba(255,100,170,0.6);
+        0 0 20px
+        rgba(255,100,170,0.6);
 
       position: relative;
+
       z-index: 20;
     }
 
+
     #yes:hover {
+
       transform: scale(1.12);
+
       box-shadow:
-        0 0 35px rgba(255,100,170,0.9);
+        0 0 35px
+        rgba(255,100,170,0.9);
     }
 
-    /*
-      IMPORTANT:
-      NO starts normally positioned.
-      Once they try to click it, JS turns it into
-      a fixed-position runaway button.
-    */
+
+    /* =========================
+       NO BUTTON
+       ========================= */
 
     #no {
-      background: rgba(255,255,255,0.85);
+
+      background:
+        rgba(255,255,255,0.9);
+
       color: #292038;
 
       position: relative;
@@ -152,38 +262,68 @@
         transform 0.15s ease;
     }
 
+
+    /* =========================
+       CHAOS MESSAGE
+       ========================= */
+
     #message {
+
       margin-top: 20px;
 
       min-height: 30px;
 
       font-size: 1rem;
+
       font-weight: bold;
 
       color: #ffd4e8;
 
-      text-shadow: 0 0 10px rgba(255,150,210,0.8);
+      text-shadow:
+        0 0 10px
+        rgba(255,150,210,0.8);
     }
+
+
+    /* =========================
+       BOTTOM LITTLE MESSAGE
+       ========================= */
 
     .tiny {
+
       margin-top: 25px;
+
       font-size: 0.9rem;
+
       opacity: 0.8;
+
+      text-shadow:
+        0 0 8px
+        rgba(255,255,255,0.5);
     }
 
-    /* YES screen */
+
+    /* =========================
+       YES / SUCCESS SCREEN
+       ========================= */
 
     #success {
+
       display: none;
 
-      animation: appear 1s ease;
+      animation:
+        appear 1s ease;
 
       font-size: 1.5rem;
+
       line-height: 1.6;
     }
 
+
     #success h2 {
-      font-size: clamp(2rem, 8vw, 4rem);
+
+      font-size:
+        clamp(2rem, 8vw, 4rem);
 
       margin-top: 0;
 
@@ -192,21 +332,33 @@
         0 0 35px #ff6fa8;
     }
 
+
     @keyframes appear {
+
       from {
+
         opacity: 0;
-        transform: scale(0.7);
+
+        transform:
+          scale(0.7);
       }
 
       to {
+
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+          scale(1);
       }
     }
 
-    /* Falling hearts/stars */
+
+    /* =========================
+       FALLING HEARTS / STARS
+       ========================= */
 
     .floating {
+
       position: fixed;
 
       top: -30px;
@@ -217,164 +369,330 @@
 
       z-index: 100;
 
-      animation: fall linear forwards;
+      animation:
+        fall linear forwards;
     }
 
+
     @keyframes fall {
+
       from {
+
         transform:
           translateY(0)
           rotate(0deg);
+
         opacity: 1;
       }
 
       to {
+
         transform:
           translateY(110vh)
           rotate(720deg);
+
         opacity: 0;
       }
     }
 
-    /* Screen shake */
+
+    /* =========================
+       SCREEN SHAKE
+       ========================= */
 
     .shake {
-      animation: shake 0.4s;
+
+      animation:
+        shake 0.4s;
     }
 
+
     @keyframes shake {
+
       0%, 100% {
-        transform: translateX(0);
+
+        transform:
+          translateY(-15vh)
+          translateX(0);
       }
 
       20% {
-        transform: translateX(-12px);
+
+        transform:
+          translateY(-15vh)
+          translateX(-12px);
       }
 
       40% {
-        transform: translateX(12px);
+
+        transform:
+          translateY(-15vh)
+          translateX(12px);
       }
 
       60% {
-        transform: translateX(-8px);
+
+        transform:
+          translateY(-15vh)
+          translateX(-8px);
       }
 
       80% {
-        transform: translateX(8px);
+
+        transform:
+          translateY(-15vh)
+          translateX(8px);
       }
     }
 
-    /* Mobile adjustments */
+
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 600px) {
 
-      .card {
-        padding: 30px 18px;
+      body {
+
+        /*
+          Keep image proportional
+          on phones too.
+        */
+
+        background-size:
+          95% auto;
+
+        /*
+          Push background image
+          further down.
+        */
+
+        background-position:
+          center 82%;
       }
 
+
+      .card {
+
+        width: 90%;
+
+        padding:
+          30px 18px;
+
+        /*
+          Move question box
+          upward on phones.
+        */
+
+        transform:
+          translateY(-12vh);
+      }
+
+
       .buttons {
+
         gap: 12px;
       }
 
+
       button {
-        padding: 14px 22px;
-        font-size: 1rem;
+
+        padding:
+          14px 22px;
+
+        font-size:
+          1rem;
       }
 
+
       .question {
-        font-size: 1.05rem;
+
+        font-size:
+          1.05rem;
+      }
+
+
+      .tiny {
+
+        font-size:
+          0.85rem;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
+
+  <!-- =========================
+       QUESTION CARD
+       ========================= -->
+
   <div class="card" id="card">
+
 
     <!-- QUESTION -->
 
     <div id="question">
 
-      <h1>🌙 Hey...</h1>
+
+      <h1>
+        🌙 Hey...
+      </h1>
+
 
       <div class="question">
 
+
         <p>
+
           Under the same sky,<br>
+
           looking at the same side-character Moon
+
         </p>
 
-        <p>
-          I have one <em>very</em> important question.
-        </p>
 
         <p>
+
+          I have one
+          <em>very</em>
+          important question.
+
+        </p>
+
+
+        <p>
+
           <strong>
-            Officially bully karna start kar du ab? (With full pyaar) 💗
+
+            Officially bully karna start kar du ab?
+            <br>
+            (With full pyaar) 💗
+
           </strong>
+
         </p>
+
 
       </div>
+
+
+      <!-- BUTTONS -->
 
       <div class="buttons">
 
+
         <button id="yes">
+
           YES 💖
+
         </button>
+
 
         <button id="no">
+
           NO 🏃
+
         </button>
 
+
       </div>
+
+
+      <!-- CHAOS MESSAGE -->
 
       <div id="message"></div>
 
+
       <div class="tiny">
+
         ✨BB bana boyfie bb✨
+
       </div>
+
 
     </div>
 
 
-    <!-- SUCCESS SCREEN -->
+    <!-- =========================
+         SUCCESS SCREEN
+         ========================= -->
 
     <div id="success">
 
+
       <h2>
-        WOOOHOOO FINALLY QUBOOL HAI! 😭💖
+
+        WOOOHOOO FINALLY
+        QUBOOL HAI! 😭💖
+
       </h2>
 
+
       <p>
+
         Excellent decision.
+
       </p>
 
+
       <p>
+
         Buddhu hai but smartboi hai 😌
+
       </p>
 
+
       <p>
+
         🌙 ✨ 💗 ✨ 🌙
+
       </p>
 
+
       <p>
-        hehehehhehe WELOVEBB 👀
+
+        hehehehhehe
+        WELOVEBB 👀
+
       </p>
+
 
     </div>
+
 
   </div>
 
 
   <script>
 
-    const noButton = document.getElementById("no");
-    const yesButton = document.getElementById("yes");
-    const message = document.getElementById("message");
-    const card = document.getElementById("card");
+
+    /* =========================
+       ELEMENTS
+       ========================= */
+
+    const noButton =
+      document.getElementById("no");
+
+    const yesButton =
+      document.getElementById("yes");
+
+    const message =
+      document.getElementById("message");
+
+    const card =
+      document.getElementById("card");
+
 
     let attempts = 0;
+
+
+    /* =========================
+       CHAOTIC MESSAGES
+       ========================= */
 
     const messages = [
 
@@ -411,55 +729,86 @@
     ];
 
 
+    /* =========================
+       MAKE NO BUTTON RUN
+       ========================= */
+
     function runAway() {
+
 
       attempts++;
 
+
       /*
-        Turn NO into a fixed-position button
-        so it can escape anywhere on the screen.
+        Change to fixed position
+        so it can run anywhere.
       */
 
-      noButton.style.position = "fixed";
+      noButton.style.position =
+        "fixed";
+
 
       const padding = 20;
+
 
       const maxX =
         window.innerWidth -
         noButton.offsetWidth -
         padding;
 
+
       const maxY =
         window.innerHeight -
         noButton.offsetHeight -
         padding;
 
+
       const randomX =
         padding +
-        Math.random() * Math.max(0, maxX - padding);
+        Math.random() *
+        Math.max(
+          0,
+          maxX - padding
+        );
+
 
       const randomY =
         padding +
-        Math.random() * Math.max(0, maxY - padding);
+        Math.random() *
+        Math.max(
+          0,
+          maxY - padding
+        );
 
 
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
+      noButton.style.left =
+        randomX + "px";
+
+
+      noButton.style.top =
+        randomY + "px";
 
 
       /*
-        Rotate it randomly for extra chaos.
+        Random rotation.
       */
 
       const rotation =
         Math.random() * 40 - 20;
 
+
+      const scale =
+        0.9 +
+        Math.random() * 0.25;
+
+
       noButton.style.transform =
-        `rotate(${rotation}deg) scale(${0.9 + Math.random() * 0.25})`;
+        `rotate(${rotation}deg)
+         scale(${scale})`;
 
 
       /*
-        Change the message.
+        Update message.
       */
 
       message.textContent =
@@ -472,7 +821,7 @@
 
 
       /*
-        Make YES progressively bigger.
+        Make YES bigger.
       */
 
       const yesScale =
@@ -481,55 +830,83 @@
           1 + attempts * 0.025
         );
 
+
       yesButton.style.transform =
         `scale(${yesScale})`;
 
 
       /*
-        Every few attempts, shake the screen.
+        Shake every 3 attempts.
       */
 
       if (attempts % 3 === 0) {
 
-        card.classList.remove("shake");
+
+        card.classList.remove(
+          "shake"
+        );
+
 
         void card.offsetWidth;
 
-        card.classList.add("shake");
+
+        card.classList.add(
+          "shake"
+        );
+
       }
 
 
       /*
-        Change the NO text as things get increasingly ridiculous.
+        Increasingly ridiculous
+        button text.
       */
 
       if (attempts >= 4) {
-        noButton.textContent = "NO...?";
+
+        noButton.textContent =
+          "NO...?";
+
       }
+
 
       if (attempts >= 7) {
-        noButton.textContent = "WAIT 😭";
+
+        noButton.textContent =
+          "WAIT 😭";
+
       }
+
 
       if (attempts >= 10) {
-        noButton.textContent = "PLEASE NO";
+
+        noButton.textContent =
+          "PLEASE NO";
+
       }
+
 
       if (attempts >= 13) {
-        noButton.textContent = "I'M SCARED";
+
+        noButton.textContent =
+          "I'M SCARED";
+
       }
 
+
       if (attempts >= 16) {
-        noButton.textContent = "OKAY FINE 😭";
+
+        noButton.textContent =
+          "OKAY FINE 😭";
+
       }
 
     }
 
 
-    /*
-      Desktop:
-      The button escapes when the mouse gets close.
-    */
+    /* =========================
+       DESKTOP
+       ========================= */
 
     noButton.addEventListener(
       "mouseenter",
@@ -537,13 +914,13 @@
     );
 
 
-    /*
-      Mobile:
-      Touching the button makes it run away.
-    */
+    /* =========================
+       MOBILE
+       ========================= */
 
     noButton.addEventListener(
       "touchstart",
+
       function(event) {
 
         event.preventDefault();
@@ -551,17 +928,20 @@
         runAway();
 
       },
-      { passive: false }
+
+      {
+        passive: false
+      }
     );
 
 
-    /*
-      If they somehow manage to click it...
-      RUN.
-    */
+    /* =========================
+       BACKUP CLICK
+       ========================= */
 
     noButton.addEventListener(
       "click",
+
       function(event) {
 
         event.preventDefault();
@@ -572,22 +952,26 @@
     );
 
 
-    /*
-      YES BUTTON
-    */
+    /* =========================
+       YES BUTTON
+       ========================= */
 
     yesButton.addEventListener(
       "click",
+
       function() {
+
 
         document.getElementById(
           "question"
-        ).style.display = "none";
+        ).style.display =
+          "none";
 
 
         document.getElementById(
           "success"
-        ).style.display = "block";
+        ).style.display =
+          "block";
 
 
         launchCelebration();
@@ -596,11 +980,12 @@
     );
 
 
-    /*
-      CHAOS / CONFETTI
-    */
+    /* =========================
+       CELEBRATION
+       ========================= */
 
     function launchCelebration() {
+
 
       const things = [
 
@@ -625,8 +1010,11 @@
         i++
       ) {
 
+
         const thing =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
 
         thing.className =
@@ -643,32 +1031,48 @@
 
 
         thing.style.left =
-          Math.random() * 100 + "vw";
+          Math.random() *
+          100 +
+          "vw";
 
 
         thing.style.animationDuration =
-          2 + Math.random() * 4 + "s";
+          2 +
+          Math.random() * 4 +
+          "s";
 
 
         thing.style.animationDelay =
-          Math.random() * 1.5 + "s";
+          Math.random() *
+          1.5 +
+          "s";
 
 
         thing.style.fontSize =
-          15 + Math.random() * 25 + "px";
+          15 +
+          Math.random() *
+          25 +
+          "px";
 
 
-        document.body.appendChild(thing);
+        document.body.appendChild(
+          thing
+        );
 
 
         setTimeout(
-          () => thing.remove(),
+
+          () =>
+            thing.remove(),
+
           7000
+
         );
 
       }
 
     }
+
 
   </script>
 
