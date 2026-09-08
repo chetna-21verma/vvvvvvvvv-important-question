@@ -12,7 +12,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       width: 100%;
       height: 100%;
@@ -20,197 +21,258 @@
     }
 
 
-    /* =========================
-       MAIN BACKGROUND
-       ========================= */
+    /* =====================================================
+       PAGE
+       ===================================================== */
 
     body {
-      font-family: "Trebuchet MS", Arial, sans-serif;
 
-      background-color: #080518;
+      font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
 
-      /*
-        Moon + stars image.
+      background:
+        #080518;
 
-        The image stays proportional.
-        It is moved LOWER so the text
-        inside the image appears below
-        the question box.
-      */
+      color: white;
 
-      background-image:
-        linear-gradient(
-          rgba(8, 5, 25, 0.15),
-          rgba(8, 5, 25, 0.15)
-        ),
-        url("moon-background.png");
-
-      background-size: 70% auto;
-
-      background-position: center 75%;
-
-      background-repeat: no-repeat;
+      position: relative;
 
       display: flex;
 
       justify-content: center;
 
-      align-items: center;
-
-      color: white;
-
-      position: relative;
+      align-items: flex-start;
     }
 
 
-    /* =========================
-       DREAMY DARK OVERLAY
-       ========================= */
+    /* =====================================================
+       BACKGROUND IMAGE
+       ===================================================== */
 
-    body::before {
-      content: "";
+    .background-image {
+
+      position: fixed;
+
+      z-index: 1;
+
+      /*
+        Keep the image proportional.
+        It will sit lower on the page.
+      */
+
+      width: min(75vw, 900px);
+
+      height: auto;
+
+      left: 50%;
+
+      bottom: -8vh;
+
+      transform:
+        translateX(-50%);
+
+      pointer-events: none;
+
+      user-select: none;
+
+      opacity: 1;
+    }
+
+
+    /* =====================================================
+       DARK DREAMY OVERLAY
+       ===================================================== */
+
+    .overlay {
 
       position: fixed;
 
       inset: 0;
 
-      background:
-        radial-gradient(
-          circle at center,
-          transparent 15%,
-          rgba(0, 0, 20, 0.35) 100%
-        );
+      z-index: 2;
 
       pointer-events: none;
 
-      z-index: 1;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(8,5,25,0.05) 15%,
+          rgba(8,5,25,0.45) 100%
+        );
     }
 
 
-    /* =========================
-       QUESTION BOX
-       ========================= */
+    /* =====================================================
+       QUESTION CARD
+       ===================================================== */
 
     .card {
 
-      width: min(90%, 600px);
+      width:
+        min(90%, 600px);
 
-      padding: 35px 25px;
+      padding:
+        32px 25px;
 
       text-align: center;
 
       background:
-        rgba(20, 12, 45, 0.72);
+        rgba(20, 12, 45, 0.88);
 
-      backdrop-filter: blur(8px);
+      backdrop-filter:
+        blur(10px);
 
-      -webkit-backdrop-filter: blur(8px);
+      -webkit-backdrop-filter:
+        blur(10px);
 
       border:
-        1px solid rgba(255,255,255,0.2);
+        1px solid
+        rgba(255,255,255,0.25);
 
-      border-radius: 30px;
+      border-radius:
+        30px;
 
       box-shadow:
-        0 20px 60px rgba(0,0,0,0.5),
-        0 0 40px rgba(255,180,220,0.15);
 
-      position: relative;
+        0 25px 70px
+        rgba(0,0,0,0.55),
 
-      z-index: 5;
+        0 0 45px
+        rgba(255,180,220,0.2);
+
+      position: fixed;
+
+      z-index: 10;
 
       /*
-        MOVE QUESTION BOX UP
+        THIS is what puts the question
+        above the writing in the image.
       */
 
-      transform: translateY(-15vh);
+      top: 4vh;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%);
     }
 
 
-    /* =========================
+    /* =====================================================
        TITLE
-       ========================= */
+       ===================================================== */
 
     h1 {
 
       font-size:
-        clamp(2rem, 8vw, 4rem);
+        clamp(2rem, 7vw, 4rem);
 
-      margin: 0 0 15px;
+      margin:
+        0 0 12px;
 
       text-shadow:
-        0 0 10px rgba(255,190,220,0.9),
-        0 0 30px rgba(255,150,210,0.5);
+
+        0 0 10px
+        rgba(255,190,220,0.95),
+
+        0 0 30px
+        rgba(255,150,210,0.6);
     }
 
 
-    /* =========================
-       QUESTION TEXT
-       ========================= */
+    /* =====================================================
+       QUESTION
+       ===================================================== */
 
     .question {
 
       font-size:
-        clamp(1.1rem, 4vw, 1.4rem);
+        clamp(1rem, 3.5vw, 1.3rem);
 
-      line-height: 1.6;
+      line-height:
+        1.55;
+    }
+
+
+    .question p {
+
+      margin:
+        13px 0;
     }
 
 
     .question strong {
 
-      font-size: 1.35em;
+      font-size:
+        1.3em;
 
+      display:
+        block;
+
+      margin-top:
+        15px;
     }
 
 
-    /* =========================
-       BUTTON AREA
-       ========================= */
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
 
     .buttons {
 
-      margin-top: 30px;
+      margin-top:
+        25px;
 
-      display: flex;
+      display:
+        flex;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 25px;
+      gap:
+        25px;
 
-      min-height: 80px;
+      min-height:
+        70px;
     }
 
 
-    /* =========================
-       ALL BUTTONS
-       ========================= */
-
     button {
 
-      border: none;
+      border:
+        none;
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
-      padding: 16px 30px;
+      padding:
+        14px 28px;
 
-      font-size: 1.1rem;
+      font-size:
+        1.05rem;
 
-      font-weight: bold;
+      font-weight:
+        bold;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
       transition:
+
         transform 0.2s ease,
+
         box-shadow 0.2s ease;
     }
 
 
-    /* =========================
-       YES BUTTON
-       ========================= */
+    /* =====================================================
+       YES
+       ===================================================== */
 
     #yes {
 
@@ -221,63 +283,77 @@
           #ff9bc5
         );
 
-      color: white;
+      color:
+        white;
 
       box-shadow:
-        0 0 20px
-        rgba(255,100,170,0.6);
+        0 0 25px
+        rgba(255,100,170,0.65);
 
-      position: relative;
+      position:
+        relative;
 
-      z-index: 20;
+      z-index:
+        20;
     }
 
 
     #yes:hover {
 
-      transform: scale(1.12);
+      transform:
+        scale(1.12);
 
       box-shadow:
-        0 0 35px
-        rgba(255,100,170,0.9);
+        0 0 40px
+        rgba(255,100,170,0.95);
     }
 
 
-    /* =========================
-       NO BUTTON
-       ========================= */
+    /* =====================================================
+       NO
+       ===================================================== */
 
     #no {
 
       background:
-        rgba(255,255,255,0.9);
+        rgba(255,255,255,0.92);
 
-      color: #292038;
+      color:
+        #292038;
 
-      position: relative;
+      position:
+        relative;
 
       transition:
+
         left 0.15s ease,
+
         top 0.15s ease,
+
         transform 0.15s ease;
     }
 
 
-    /* =========================
+    /* =====================================================
        CHAOS MESSAGE
-       ========================= */
+       ===================================================== */
 
     #message {
 
-      margin-top: 20px;
+      margin-top:
+        15px;
 
-      min-height: 30px;
+      min-height:
+        25px;
 
-      font-size: 1rem;
+      font-size:
+        0.95rem;
 
-      font-weight: bold;
+      font-weight:
+        bold;
 
-      color: #ffd4e8;
+      color:
+        #ffd4e8;
 
       text-shadow:
         0 0 10px
@@ -285,17 +361,20 @@
     }
 
 
-    /* =========================
-       BOTTOM LITTLE MESSAGE
-       ========================= */
+    /* =====================================================
+       LITTLE MESSAGE
+       ===================================================== */
 
     .tiny {
 
-      margin-top: 25px;
+      margin-top:
+        18px;
 
-      font-size: 0.9rem;
+      font-size:
+        0.85rem;
 
-      opacity: 0.8;
+      opacity:
+        0.85;
 
       text-shadow:
         0 0 8px
@@ -303,33 +382,41 @@
     }
 
 
-    /* =========================
-       YES / SUCCESS SCREEN
-       ========================= */
+    /* =====================================================
+       SUCCESS
+       ===================================================== */
 
     #success {
 
-      display: none;
+      display:
+        none;
 
       animation:
         appear 1s ease;
 
-      font-size: 1.5rem;
+      font-size:
+        1.35rem;
 
-      line-height: 1.6;
+      line-height:
+        1.6;
     }
 
 
     #success h2 {
 
       font-size:
-        clamp(2rem, 8vw, 4rem);
+        clamp(2rem, 7vw, 4rem);
 
-      margin-top: 0;
+      margin:
+        0 0 20px;
 
       text-shadow:
-        0 0 15px #ff9bc5,
-        0 0 35px #ff6fa8;
+
+        0 0 15px
+        #ff9bc5,
+
+        0 0 35px
+        #ff6fa8;
     }
 
 
@@ -337,7 +424,8 @@
 
       from {
 
-        opacity: 0;
+        opacity:
+          0;
 
         transform:
           scale(0.7);
@@ -345,7 +433,8 @@
 
       to {
 
-        opacity: 1;
+        opacity:
+          1;
 
         transform:
           scale(1);
@@ -353,21 +442,26 @@
     }
 
 
-    /* =========================
-       FALLING HEARTS / STARS
-       ========================= */
+    /* =====================================================
+       FALLING HEARTS
+       ===================================================== */
 
     .floating {
 
-      position: fixed;
+      position:
+        fixed;
 
-      top: -30px;
+      top:
+        -30px;
 
-      font-size: 25px;
+      font-size:
+        25px;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
-      z-index: 100;
+      z-index:
+        100;
 
       animation:
         fall linear forwards;
@@ -382,7 +476,8 @@
           translateY(0)
           rotate(0deg);
 
-        opacity: 1;
+        opacity:
+          1;
       }
 
       to {
@@ -391,14 +486,15 @@
           translateY(110vh)
           rotate(720deg);
 
-        opacity: 0;
+        opacity:
+          0;
       }
     }
 
 
-    /* =========================
-       SCREEN SHAKE
-       ========================= */
+    /* =====================================================
+       CARD SHAKE
+       ===================================================== */
 
     .shake {
 
@@ -412,111 +508,171 @@
       0%, 100% {
 
         transform:
-          translateY(-15vh)
-          translateX(0);
+          translateX(-50%);
       }
 
       20% {
 
         transform:
-          translateY(-15vh)
-          translateX(-12px);
+          translateX(calc(-50% - 12px));
       }
 
       40% {
 
         transform:
-          translateY(-15vh)
-          translateX(12px);
+          translateX(calc(-50% + 12px));
       }
 
       60% {
 
         transform:
-          translateY(-15vh)
-          translateX(-8px);
+          translateX(calc(-50% - 8px));
       }
 
       80% {
 
         transform:
-          translateY(-15vh)
-          translateX(8px);
+          translateX(calc(-50% + 8px));
       }
     }
 
 
-    /* =========================
+    /* =====================================================
        MOBILE
-       ========================= */
+       ===================================================== */
 
     @media (max-width: 600px) {
 
+
       body {
 
-        /*
-          Keep image proportional
-          on phones too.
-        */
-
-        background-size:
-          95% auto;
-
-        /*
-          Push background image
-          further down.
-        */
-
-        background-position:
-          center 82%;
+        align-items:
+          flex-start;
       }
 
+
+      /*
+        Image becomes wider on phones,
+        but remains proportional.
+      */
+
+      .background-image {
+
+        width:
+          115vw;
+
+        max-width:
+          none;
+
+        bottom:
+          -5vh;
+      }
+
+
+      /*
+        Question box stays at the top,
+        safely above the image writing.
+      */
 
       .card {
 
-        width: 90%;
+        width:
+          92%;
 
         padding:
-          30px 18px;
+          25px 17px;
 
-        /*
-          Move question box
-          upward on phones.
-        */
+        top:
+          3vh;
 
-        transform:
-          translateY(-12vh);
+        border-radius:
+          25px;
       }
 
 
-      .buttons {
-
-        gap: 12px;
-      }
-
-
-      button {
-
-        padding:
-          14px 22px;
+      h1 {
 
         font-size:
-          1rem;
+          2.4rem;
+
+        margin-bottom:
+          8px;
       }
 
 
       .question {
 
         font-size:
-          1.05rem;
+          1rem;
+
+        line-height:
+          1.45;
+      }
+
+
+      .question p {
+
+        margin:
+          9px 0;
+      }
+
+
+      .question strong {
+
+        font-size:
+          1.2em;
+
+        margin-top:
+          10px;
+      }
+
+
+      .buttons {
+
+        gap:
+          12px;
+
+        margin-top:
+          18px;
+      }
+
+
+      button {
+
+        padding:
+          13px 21px;
+
+        font-size:
+          0.95rem;
       }
 
 
       .tiny {
 
+        margin-top:
+          13px;
+
+        font-size:
+          0.8rem;
+      }
+
+
+      #message {
+
+        margin-top:
+          10px;
+
         font-size:
           0.85rem;
       }
+
+
+      #success {
+
+        font-size:
+          1.15rem;
+      }
+
     }
 
   </style>
@@ -526,11 +682,32 @@
 <body>
 
 
-  <!-- =========================
-       QUESTION CARD
-       ========================= -->
+  <!-- =====================================================
+       BACKGROUND IMAGE
 
-  <div class="card" id="card">
+       IMPORTANT:
+       Keep moon-background.png in the SAME folder
+       as index.html.
+       ===================================================== -->
+
+  <img
+    src="moon-background.png"
+    class="background-image"
+    alt=""
+  >
+
+
+  <div class="overlay"></div>
+
+
+  <!-- =====================================================
+       QUESTION CARD
+       ===================================================== -->
+
+  <div
+    class="card"
+    id="card"
+  >
 
 
     <!-- QUESTION -->
@@ -547,31 +724,24 @@
 
 
         <p>
-
           Under the same sky,<br>
-
           looking at the same side-character Moon
-
         </p>
 
 
         <p>
-
           I have one
           <em>very</em>
           important question.
-
         </p>
 
 
         <p>
 
           <strong>
-
             Officially bully karna start kar du ab?
             <br>
             (With full pyaar) 💗
-
           </strong>
 
         </p>
@@ -586,16 +756,12 @@
 
 
         <button id="yes">
-
           YES 💖
-
         </button>
 
 
         <button id="no">
-
           NO 🏃
-
         </button>
 
 
@@ -608,56 +774,43 @@
 
 
       <div class="tiny">
-
         ✨BB bana boyfie bb✨
-
       </div>
 
 
     </div>
 
 
-    <!-- =========================
+    <!-- =================================================
          SUCCESS SCREEN
-         ========================= -->
+         ================================================= -->
 
     <div id="success">
 
 
       <h2>
-
         WOOOHOOO FINALLY
         QUBOOL HAI! 😭💖
-
       </h2>
 
 
       <p>
-
         Excellent decision.
-
       </p>
 
 
       <p>
-
         Buddhu hai but smartboi hai 😌
-
       </p>
 
 
       <p>
-
         🌙 ✨ 💗 ✨ 🌙
-
       </p>
 
 
       <p>
-
-        hehehehhehe
-        WELOVEBB 👀
-
+        hehehehhehe WELOVEBB 👀
       </p>
 
 
@@ -670,9 +823,9 @@
   <script>
 
 
-    /* =========================
+    /* =====================================================
        ELEMENTS
-       ========================= */
+       ===================================================== */
 
     const noButton =
       document.getElementById("no");
@@ -690,9 +843,9 @@
     let attempts = 0;
 
 
-    /* =========================
+    /* =====================================================
        CHAOTIC MESSAGES
-       ========================= */
+       ===================================================== */
 
     const messages = [
 
@@ -729,9 +882,9 @@
     ];
 
 
-    /* =========================
-       MAKE NO BUTTON RUN
-       ========================= */
+    /* =====================================================
+       RUNAWAY NO BUTTON
+       ===================================================== */
 
     function runAway() {
 
@@ -740,8 +893,8 @@
 
 
       /*
-        Change to fixed position
-        so it can run anywhere.
+        Make the button fixed so it can
+        escape anywhere on the screen.
       */
 
       noButton.style.position =
@@ -808,7 +961,7 @@
 
 
       /*
-        Update message.
+        Change message.
       */
 
       message.textContent =
@@ -836,10 +989,12 @@
 
 
       /*
-        Shake every 3 attempts.
+        Shake card every 3 attempts.
       */
 
-      if (attempts % 3 === 0) {
+      if (
+        attempts % 3 === 0
+      ) {
 
 
         card.classList.remove(
@@ -859,7 +1014,7 @@
 
       /*
         Increasingly ridiculous
-        button text.
+        NO button.
       */
 
       if (attempts >= 4) {
@@ -904,9 +1059,9 @@
     }
 
 
-    /* =========================
+    /* =====================================================
        DESKTOP
-       ========================= */
+       ===================================================== */
 
     noButton.addEventListener(
       "mouseenter",
@@ -914,9 +1069,9 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        MOBILE
-       ========================= */
+       ===================================================== */
 
     noButton.addEventListener(
       "touchstart",
@@ -935,9 +1090,9 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        BACKUP CLICK
-       ========================= */
+       ===================================================== */
 
     noButton.addEventListener(
       "click",
@@ -952,9 +1107,9 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        YES BUTTON
-       ========================= */
+       ===================================================== */
 
     yesButton.addEventListener(
       "click",
@@ -980,9 +1135,9 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        CELEBRATION
-       ========================= */
+       ===================================================== */
 
     function launchCelebration() {
 
